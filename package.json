@@ -1,0 +1,11 @@
+{
+  "name": "raphael-tutorial",
+  "version": "0.0.1",
+  "language": "zh",
+  "description": "Raphael tutorial.",
+  "author": "2youyou2",
+  "dependencies": {
+    "cheerio": "0.20.0",
+    "domhandler": "2.3.0"
+  }
+}
