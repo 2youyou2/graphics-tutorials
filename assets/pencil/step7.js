@@ -43,7 +43,7 @@ cc.Class({
         points.push(touchLoc);
 
         let ctx = this.ctx;
-        // ctx.clear();
+        ctx.clear();
 
         let p1 = points[0];
         let p2 = points[1];
@@ -53,7 +53,7 @@ cc.Class({
         for (let i = 1, l = points.length; i < l-1; i++) {
             ctx.lineTo(points[i].x, points[i].y);
             var nearPoint = points[i-5];
-            if (nearPoint) {
+            if (nearPoint && (nearPoint.sub(points[i]).mag() > 10)) {
                 ctx.moveTo(nearPoint.x, nearPoint.y);
                 ctx.lineTo(points[i].x, points[i].y);
             }
