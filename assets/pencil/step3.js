@@ -28,15 +28,15 @@ cc.Class({
             onTouchMoved: this.onTouchMoved.bind(this),
             onTouchEnded: this.onTouchEnded.bind(this),
         }, this.node);
+
+        this.points = [];
     },
 
     onTouchBegan: function (touch, event) {
         var touchLoc = touch.getLocation();
         touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
 
-        touchLoc.width = getRandomInt(5, 10);
-
-        this.points = [touchLoc];
+        this.points.push(touchLoc);
 
         return true;
     },
@@ -45,23 +45,20 @@ cc.Class({
         var touchLoc = touch.getLocation();
         touchLoc = this.node.parent.convertToNodeSpaceAR(touchLoc);
 
-        touchLoc.width = getRandomInt(5, 10);
+        var width = getRandomInt(5, 10);
 
         let points = this.points;
         points.push(touchLoc);
 
         let ctx = this.ctx;
-        ctx.clear();
 
-        for (let i = 1, l = points.length; i < l; i++) {
-            let p1 = points[i-1];
-            let p2 = points[i];
+        let p1 = points[points.length-2];
+        let p2 = points[points.length-1];
 
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.lineWidth = p1.width;
-            ctx.stroke();
-        }
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.lineWidth = width;
+        ctx.stroke();
     },
 
     onTouchEnded: function (touch, event) {
